@@ -15,6 +15,7 @@
 		3572A621243E7A8E00A9C0EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3572A61F243E7A8E00A9C0EF /* Main.storyboard */; };
 		3572A623243E7A8F00A9C0EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3572A622243E7A8F00A9C0EF /* Assets.xcassets */; };
 		3572A626243E7A8F00A9C0EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3572A624243E7A8F00A9C0EF /* LaunchScreen.storyboard */; };
+		3572A630243E7FCC00A9C0EF /* ColorPalette.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3572A62F243E7FCC00A9C0EF /* ColorPalette.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		3572A622243E7A8F00A9C0EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3572A625243E7A8F00A9C0EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3572A627243E7A8F00A9C0EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3572A62F243E7FCC00A9C0EF /* ColorPalette.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorPalette.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +62,26 @@
 		3572A614243E7A8E00A9C0EF /* Hopper */ = {
 			isa = PBXGroup;
 			children = (
+				3572A62D243E7E4700A9C0EF /* Resources */,
+				3572A61D243E7A8E00A9C0EF /* GameViewController.swift */,
+				3572A61F243E7A8E00A9C0EF /* Main.storyboard */,
+				3572A62F243E7FCC00A9C0EF /* ColorPalette.xcassets */,
+			);
+			path = Hopper;
+			sourceTree = "<group>";
+		};
+		3572A62D243E7E4700A9C0EF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				3572A615243E7A8E00A9C0EF /* AppDelegate.swift */,
 				3572A617243E7A8E00A9C0EF /* GameScene.sks */,
 				3572A619243E7A8E00A9C0EF /* Actions.sks */,
 				3572A61B243E7A8E00A9C0EF /* GameScene.swift */,
-				3572A61D243E7A8E00A9C0EF /* GameViewController.swift */,
-				3572A61F243E7A8E00A9C0EF /* Main.storyboard */,
 				3572A622243E7A8F00A9C0EF /* Assets.xcassets */,
 				3572A624243E7A8F00A9C0EF /* LaunchScreen.storyboard */,
 				3572A627243E7A8F00A9C0EF /* Info.plist */,
 			);
-			path = Hopper;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3572A621243E7A8E00A9C0EF /* Main.storyboard in Resources */,
+				3572A630243E7FCC00A9C0EF /* ColorPalette.xcassets in Resources */,
 				3572A618243E7A8E00A9C0EF /* GameScene.sks in Resources */,
 				3572A623243E7A8F00A9C0EF /* Assets.xcassets in Resources */,
 				3572A626243E7A8F00A9C0EF /* LaunchScreen.storyboard in Resources */,
@@ -293,7 +305,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Hopper/Info.plist;
+				INFOPLIST_FILE = Hopper/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -310,7 +322,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Hopper/Info.plist;
+				INFOPLIST_FILE = Hopper/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

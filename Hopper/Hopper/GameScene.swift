@@ -12,15 +12,12 @@ import GameplayKit
 class GameScene: SKScene {
     
     //MARK: - Properties
-    let backGroundColor = UIColor.green
-    
-    let player = SKSpriteNode(imageNamed: <#T##String#>)
+    var player = SKSpriteNode(imageNamed: "Necrospect")
 //    let playerColor = UIColor.white
     var playerSize = CGSize(width: 50, height: 50)
     
     
     override func didMove(to view: SKView) {
-        self.backgroundColor = backgroundColor
         spawnPlayer()
         
     }
@@ -34,7 +31,8 @@ class GameScene: SKScene {
     
     func spawnPlayer() {
         // give player size and color
-        player.position = CGPoint(x: self.frame.midX, y: 25)
+        player.size = playerSize
+        player.position = CGPoint(x: self.frame.midX, y: self.frame.minY + 50)
         self.addChild(player)
     }
     

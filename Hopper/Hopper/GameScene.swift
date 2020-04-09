@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //MARK: - Outlets
     @IBOutlet weak var greenCarConstraint: NSLayoutConstraint!
@@ -87,6 +87,8 @@ class GameScene: SKScene {
         // add rabbit to the view
         self.addChild(player)
     }
+    
+    
 
     func animateGreenCarL() {
         greenCar.size = greenCarSize

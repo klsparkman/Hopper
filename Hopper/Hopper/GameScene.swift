@@ -13,7 +13,24 @@ class GameScene: SKScene {
     
     //MARK: - Properties
     var player = SKSpriteNode(imageNamed: "Abunny.5")
+
+    var dumpTruck = SKSpriteNode(imageNamed: "dumpTruck.L")
+    var greenCar = SKSpriteNode(imageNamed: "greenCar.L")
+    var pickupTruck1 = SKSpriteNode(imageNamed: "pickupTruck.1.R")
+    var pickupTruck2 = SKSpriteNode(imageNamed: "pickupTruck.2.R")
+    var redCar = SKSpriteNode(imageNamed: "redCar.R")
+    var schoolBus = SKSpriteNode(imageNamed: "schoolBus.R")
+    
+//    let playerColor = UIColor.white
+  
     var playerSize = CGSize(width: 50, height: 50)
+    var dumpTruckSize = CGSize(width: 50, height: 50)
+    var greenCarSize = CGSize(width: 50, height: 50)
+    var pickupTruck1Size = CGSize(width: 50, height: 50)
+    var pickupTruck2Size = CGSize(width: 50, height: 50)
+    var redCarSize = CGSize(width: 50, height: 50)
+    var schoolBusSize = CGSize(width: 50, height: 50)
+
     
     override func didMove(to view: SKView) {
         // loads rabbit with its starting conditions
@@ -51,4 +68,13 @@ class GameScene: SKScene {
         // add rabbit to the view
         self.addChild(player)
     }
+
+    var hitBunny: [SKSpriteNode] = []
+    override func enumerateChildNodes(withName name: bunny, using block: @escaping (SKNode, UnsafeMutablePointer<ObjCBool>) -> Void) {
+        <#code#>
+    }
+    
+//    override func update(_ currentTime: TimeInterval) {
+//        // Called before each frame is rendered
+//    }
 }

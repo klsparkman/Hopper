@@ -16,18 +16,23 @@ class GameScene: SKScene {
 //    let playerColor = UIColor.white
     var playerSize = CGSize(width: 50, height: 50)
     
-    
     override func didMove(to view: SKView) {
         spawnPlayer()
-        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
+        view.addGestureRecognizer(recognizer)
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//
-//        for t in touches {
-//
-//        }
-//    }
+    @objc func tap(recognizer: UIGestureRecognizer) {
+        let viewLocation = recognizer.location(in: view)
+        let sceneLocation = convertPoint(fromView: viewLocation)
+        if player.position.y < sceneLocation.y {
+            let moveByAction = SKAction.moveBy(x: 0, y: 50, duration: 0.3)
+            player.run(moveByAction)
+        } else {
+            let moveByAction = SKAction.moveBy(x: 0, y: -50, duration: 0.3)
+            player.run(moveByAction)
+        }
+    }
     
     func spawnPlayer() {
         // give player size and color

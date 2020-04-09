@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //MARK: - Properties
     var player = SKSpriteNode(imageNamed: "Abunny.5")
@@ -55,10 +55,7 @@ class GameScene: SKScene {
         self.addChild(player)
     }
     
-    var hitBunny: [SKSpriteNode] = []
-    override func enumerateChildNodes(withName name: bunny, using block: @escaping (SKNode, UnsafeMutablePointer<ObjCBool>) -> Void) {
-        <#code#>
-    }
+    
     
 //    override func update(_ currentTime: TimeInterval) {
 //        // Called before each frame is rendered

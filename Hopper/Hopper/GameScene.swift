@@ -70,42 +70,77 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(player)
     }
     
+    // greenCar stuff
     func spawnGreenCar() {
         greenCar.size = greenCarSize
         greenCar.position = CGPoint(x: self.frame.maxX + 50, y: self.frame.minY + 100)
         self.addChild(greenCar)
+        
+        greenCar.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(greenCarEndlessAnimation), SKAction.wait(forDuration: 1.0)])))
+    }
+    
+    func greenCarEndlessAnimation() {
+        greenCar.position = CGPoint(x: self.frame.maxX + 50, y: self.frame.minY + 100)
         let carMoveByAction = SKAction.moveBy(x: -500, y: 0, duration: 2)
         greenCar.run(carMoveByAction)
     }
         
+    // pickupTruck1 stuff
     func spawnPickupTruck1() {
         pickupTruck1.size = pickupTruck1Size
         pickupTruck1.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 600)
         self.addChild(pickupTruck1)
+        
+        pickupTruck1.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(pickupTruck1EndlessAnimation), SKAction.wait(forDuration: 2.5)])))
+        }
+        
+    func pickupTruck1EndlessAnimation() {
+        pickupTruck1.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 600)
         let carMoveByAction = SKAction.moveBy(x: 500, y: 0, duration: 3)
         pickupTruck1.run(carMoveByAction)
     }
     
+    // redCar stuff
     func spawnRedCar() {
         redCar.size = redCarSize
         redCar.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 300)
         self.addChild(redCar)
+        
+        redCar.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(redCarEndlessAnimation), SKAction.wait(forDuration: 2.5)])))
+    }
+    
+    func redCarEndlessAnimation() {
+        redCar.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 300)
         let carMoveByAction = SKAction.moveBy(x: 500, y: 0, duration: 2.5)
         redCar.run(carMoveByAction)
     }
     
+    // schoolBus stuff
     func spawnSchoolBus() {
         schoolBus.size = schoolBusSize
         schoolBus.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 400)
         self.addChild(schoolBus)
+        
+        schoolBus.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(schoolBusEndlessAnimation), SKAction.wait(forDuration: 1.5)])))
+    }
+    
+    func schoolBusEndlessAnimation() {
+        schoolBus.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 400)
         let carMoveByAction = SKAction.moveBy(x: 500, y: 0, duration: 2)
         schoolBus.run(carMoveByAction)
     }
     
+    // dumpTruck stuff
     func spawnDumpTruck() {
         dumpTruck.size = dumpTruckSize
         dumpTruck.position = CGPoint(x: self.frame.maxX + 50, y: 500)
         self.addChild(dumpTruck)
+        
+        dumpTruck.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(dumpTruckEndlessAnimation), SKAction.wait(forDuration: 0.5)])))
+    }
+    
+    func dumpTruckEndlessAnimation() {
+        dumpTruck.position = CGPoint(x: self.frame.maxX + 50, y: 500)
         let carMoveByAction = SKAction.moveBy(x: -500, y: 0, duration: 4)
         dumpTruck.run(carMoveByAction)
     }

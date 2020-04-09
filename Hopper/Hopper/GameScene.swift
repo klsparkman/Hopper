@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var schoolBus = SKSpriteNode(imageNamed: "schoolBus.R")
     
     // vehicle Sizes
+    var dumpTruckSize = CGSize(width: 50, height: 50)
     var greenCarSize = CGSize(width: 50, height: 50)
     var pickupTruck1Size = CGSize(width: 50, height: 50)
     
@@ -25,25 +26,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var pickupTruck2Size = CGSize(width: 50, height: 50)
     var redCarSize = CGSize(width: 50, height: 50)
     var schoolBusSize = CGSize(width: 50, height: 50)
-    var dumpTruckSize = CGSize(width: 50, height: 50)
-
-    
     
     override func didMove(to view: SKView) {
         // loads rabbit with its starting conditions
         spawnPlayer()
+        
+        //loads vehicles
         spawnRedCar()
         spawnGreenCar()
         spawnSchoolBus()
         spawnPickupTruck1()
-        
-        // loads and animates vehicles
-        //animateGreenCarL()
-        //animateDumpTruck()
-        //animatePickupTruck1()
-        //animateRedCar()
-        //animateSchoolBus()
-        
+        spawnDumpTruck()
+
         // sets up tap recognizer to listen for the tap function
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         view.addGestureRecognizer(recognizer)
@@ -60,10 +54,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.run(moveByAction)
         } else {
             let moveByAction = SKAction.moveBy(x: 0, y: -50, duration: 0.3)
-            
             // executes the movement action
             player.run(moveByAction)
         }
+        
     }
     
     // Mark: - Adding nodes
@@ -78,100 +72,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func spawnGreenCar() {
         greenCar.size = greenCarSize
-        greenCar.position = CGPoint(x: self.frame.maxX + 50, y: 100)
+        greenCar.position = CGPoint(x: self.frame.maxX + 50, y: self.frame.minY + 100)
         self.addChild(greenCar)
+        let carMoveByAction = SKAction.moveBy(x: -500, y: 0, duration: 2)
+        greenCar.run(carMoveByAction)
+    }
+        
+    func spawnPickupTruck1() {
+        pickupTruck1.size = pickupTruck1Size
+        pickupTruck1.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 600)
+        self.addChild(pickupTruck1)
+        let carMoveByAction = SKAction.moveBy(x: 500, y: 0, duration: 3)
+        pickupTruck1.run(carMoveByAction)
     }
     
     func spawnRedCar() {
         redCar.size = redCarSize
-        redCar.position = CGPoint(x: -50, y: 300)
+        redCar.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 300)
         self.addChild(redCar)
+        let carMoveByAction = SKAction.moveBy(x: 500, y: 0, duration: 2.5)
+        redCar.run(carMoveByAction)
     }
     
     func spawnSchoolBus() {
         schoolBus.size = schoolBusSize
-        schoolBus.position = CGPoint(x: -50, y: 400)
+        schoolBus.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 400)
         self.addChild(schoolBus)
-    }
-    
-    func spawnPickupTruck1() {
-        pickupTruck1.size = pickupTruck1Size
-        pickupTruck1.position = CGPoint(x: -50, y: 200)
-        self.addChild(pickupTruck1)
+        let carMoveByAction = SKAction.moveBy(x: 500, y: 0, duration: 2)
+        schoolBus.run(carMoveByAction)
     }
     
     func spawnDumpTruck() {
         dumpTruck.size = dumpTruckSize
         dumpTruck.position = CGPoint(x: self.frame.maxX + 50, y: 500)
         self.addChild(dumpTruck)
+        let carMoveByAction = SKAction.moveBy(x: -500, y: 0, duration: 4)
+        dumpTruck.run(carMoveByAction)
     }
-    
-//    func animateGreenCarL() {
-//        greenCar.size = greenCarSize
-//        greenCar.position = CGPoint(x: -50, y: 100)
-//        self.addChild(greenCar)
-//    }
-        //    func animateDumpTruck() {
-        //        dumpTruck.size = dumpTruckSize
-        //        self.addChild(dumpTruck)
-        //
-        //        UIView.animate(withDuration: 1.5, delay: 0, options: [.repeat, .curveEaseInOut], animations: {
-        //            self.dumpTruckConstraint.constant -= self.view?.bounds.width ?? 500
-        //            self.view?.layoutIfNeeded()
-        //        }, completion: nil)
-        //    }
-        
-        
-        // Mark: - Animations
-        //    func animateGreenCarL() {
-        //        greenCar.size = greenCarSize
-        //        self.addChild(greenCar)
-        //    }
-        
-        //        UIView.animate(withDuration: 1.0, delay: 2, options: [.repeat], animations: {
-        //
-        //            self.greenCarConstraint.constant -= self.view?.bounds.width ?? 500
-        //            self.view?.layoutIfNeeded()
-        //        }, completion: nil)
-        //
-        //
-        //    func animateDumpTruck() {
-        //        dumpTruck.size = dumpTruckSize
-        //        self.addChild(dumpTruck)
-        //
-        //        UIView.animate(withDuration: 1.5, delay: 0, options: [.repeat, .curveEaseInOut], animations: {
-        //            self.dumpTruckConstraint.constant -= self.view?.bounds.width ?? 500
-        //            self.view?.layoutIfNeeded()
-        //        }, completion: nil)
-        //    }
-        
-        //    func animatePickupTruck1() {
-        //        pickupTruck1.size = pickupTruck1Size
-        //        self.addChild(pickupTruck1)
-        //
-        //        UIView.animate(withDuration: 1, delay: 1, options: [.repeat, .curveLinear], animations: {
-        //            self.pickupTruck1Constraint.constant += self.view?.bounds.width ?? 500
-        //            self.view?.layoutIfNeeded()
-        //        }, completion: nil)
-        //    }
-        //
-        //    func animateRedCar() {
-        //        redCar.size = redCarSize
-        //        self.addChild(redCar)
-        //
-        //        UIView.animate(withDuration: 0.5, delay: 0.5, options: [.repeat], animations: {
-        //            self.redCarConstraint.constant += self.view?.bounds.width ?? 500
-        //            self.view?.layoutIfNeeded()
-        //        }, completion: nil)
-        //    }
-        //
-        //    func animateSchoolBus() {
-        //        schoolBus.size = schoolBusSize
-        //        self.addChild(schoolBus)
-        //
-        //        UIView.animate(withDuration: 2, delay: 1, options: [.repeat, .curveEaseOut], animations: {
-        //            self.schoolBusConstraint.constant += self.view?.bounds.width ?? 500
-        //            self.view?.layoutIfNeeded()
-        //        }, completion: nil)
-        //    }
 }

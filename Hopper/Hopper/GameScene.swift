@@ -11,12 +11,20 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    //MARK: - Outlets
+    @IBOutlet weak var greenCarConstraint: NSLayoutConstraint!
+    @IBOutlet weak var redCarConstraint: NSLayoutConstraint!
+    @IBOutlet weak var schoolBusConstraint: NSLayoutConstraint!
+//    @IBOutlet weak var dumpTruckConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pickupTruck1Constraint: NSLayoutConstraint!
+    
+    
     //MARK: - Properties
     var player = SKSpriteNode(imageNamed: "Abunny.5")
     var playerSize = CGSize(width: 50, height: 50)
 
-    // Vehicles
-    var dumpTruck = SKSpriteNode(imageNamed: "dumpTruck.L")
+    // vehicles
+//    var dumpTruck = SKSpriteNode(imageNamed: "dumpTruck.L")
     var greenCar = SKSpriteNode(imageNamed: "greenCar.L")
     var pickupTruck1 = SKSpriteNode(imageNamed: "pickupTruck.1.R")
     
@@ -25,8 +33,8 @@ class GameScene: SKScene {
     var redCar = SKSpriteNode(imageNamed: "redCar.R")
     var schoolBus = SKSpriteNode(imageNamed: "schoolBus.R")
 
-    // Vehicle Sizes
-    var dumpTruckSize = CGSize(width: 50, height: 50)
+    // vehicle Sizes
+//    var dumpTruckSize = CGSize(width: 50, height: 50)
     var greenCarSize = CGSize(width: 50, height: 50)
     var pickupTruck1Size = CGSize(width: 50, height: 50)
     
@@ -35,12 +43,6 @@ class GameScene: SKScene {
     var redCarSize = CGSize(width: 50, height: 50)
     var schoolBusSize = CGSize(width: 50, height: 50)
     
-    // Vehicle Constraints
-    @IBOutlet weak var greenCarRightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var dumpTruckRightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var redCarLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var schoolBusLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var pickupTruck1LeftConstraint: NSLayoutConstraint!
     
     override func didMove(to view: SKView) {
         // loads rabbit with its starting conditions
@@ -48,7 +50,7 @@ class GameScene: SKScene {
         
         // loads and animates vehicles
         animateGreenCarL()
-        animateDumpTruck()
+//        animateDumpTruck()
         animatePickupTruck1()
         animateRedCar()
         animateSchoolBus()
@@ -91,27 +93,27 @@ class GameScene: SKScene {
         self.addChild(greenCar)
         
         UIView.animate(withDuration: 1.0, delay: 2, options: [.repeat], animations: {
-            self.greenCarRightConstraint.constant -= self.view?.bounds.width ?? 500
+            self.greenCarConstraint.constant -= self.view?.bounds.width ?? 500
             self.view?.layoutIfNeeded()
         }, completion: nil)
     }
     
-    func animateDumpTruck() {
-        dumpTruck.size = dumpTruckSize
-        self.addChild(dumpTruck)
-        
-        UIView.animate(withDuration: 1.5, delay: 0, options: [.repeat, .curveEaseInOut], animations: {
-            self.dumpTruckRightConstraint.constant -= self.view?.bounds.width ?? 500
-            self.view?.layoutIfNeeded()
-        }, completion: nil)
-    }
+//    func animateDumpTruck() {
+//        dumpTruck.size = dumpTruckSize
+//        self.addChild(dumpTruck)
+//        
+//        UIView.animate(withDuration: 1.5, delay: 0, options: [.repeat, .curveEaseInOut], animations: {
+//            self.dumpTruckConstraint.constant -= self.view?.bounds.width ?? 500
+//            self.view?.layoutIfNeeded()
+//        }, completion: nil)
+//    }
     
     func animatePickupTruck1() {
         pickupTruck1.size = pickupTruck1Size
         self.addChild(pickupTruck1)
         
         UIView.animate(withDuration: 1, delay: 1, options: [.repeat, .curveLinear], animations: {
-            self.pickupTruck1LeftConstraint.constant += self.view?.bounds.width ?? 500
+            self.pickupTruck1Constraint.constant += self.view?.bounds.width ?? 500
             self.view?.layoutIfNeeded()
         }, completion: nil)
     }
@@ -121,7 +123,7 @@ class GameScene: SKScene {
         self.addChild(redCar)
         
         UIView.animate(withDuration: 0.5, delay: 0.5, options: [.repeat], animations: {
-            self.redCarLeftConstraint.constant += self.view?.bounds.width ?? 500
+            self.redCarConstraint.constant += self.view?.bounds.width ?? 500
             self.view?.layoutIfNeeded()
         }, completion: nil)
     }
@@ -131,7 +133,7 @@ class GameScene: SKScene {
         self.addChild(schoolBus)
         
         UIView.animate(withDuration: 2, delay: 1, options: [.repeat, .curveEaseOut], animations: {
-            self.schoolBusLeftConstraint.constant += self.view?.bounds.width ?? 500
+            self.schoolBusConstraint.constant += self.view?.bounds.width ?? 500
             self.view?.layoutIfNeeded()
         }, completion: nil)
     }

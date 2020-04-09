@@ -90,15 +90,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // add rabbit to the view
         self.addChild(player)
     }
+    
 
     func spawnGreenCar() {
         greenCar.size = greenCarSize
         greenCar.position = CGPoint(x: -50, y: 100)
         self.addChild(greenCar)
     }
-    
-    func spawnPickupTruck1() {
 
+    func spawnPickupTruck1() {
         pickupTruck1.size = pickupTruck1Size
         pickupTruck1.position = CGPoint(x: -50, y: 200)
         self.addChild(pickupTruck1)
@@ -139,6 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //        }, completion: nil)
     //    }
     
+
 //    func animatePickupTruck1() {
 //        pickupTruck1.size = pickupTruck1Size
 //        self.addChild(pickupTruck1)

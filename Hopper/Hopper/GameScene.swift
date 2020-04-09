@@ -12,36 +12,43 @@ import GameplayKit
 class GameScene: SKScene {
     
     //MARK: - Properties
-    var player = SKSpriteNode(imageNamed: "Necrospect")
-//    let playerColor = UIColor.white
+    var player = SKSpriteNode(imageNamed: "Abunny.5")
     var playerSize = CGSize(width: 50, height: 50)
     
     override func didMove(to view: SKView) {
+        // loads rabbit with its starting conditions
         spawnPlayer()
+        
+        // sets up tap recognizer to listen for the tap function
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         view.addGestureRecognizer(recognizer)
     }
     
     @objc func tap(recognizer: UIGestureRecognizer) {
+        // gets the exact point on the screen where the user tapped
         let viewLocation = recognizer.location(in: view)
         let sceneLocation = convertPoint(fromView: viewLocation)
+        
+        // defines which direction to move, how far, and how quickly
         if player.position.y < sceneLocation.y {
             let moveByAction = SKAction.moveBy(x: 0, y: 50, duration: 0.3)
             player.run(moveByAction)
         } else {
             let moveByAction = SKAction.moveBy(x: 0, y: -50, duration: 0.3)
+            
+            // executes the movement action
             player.run(moveByAction)
         }
     }
     
     func spawnPlayer() {
-        // give player size and color
+        // set rabbit size
         player.size = playerSize
+        
+        // set starting position of rabbit
         player.position = CGPoint(x: self.frame.midX, y: self.frame.minY + 50)
+        
+        // add rabbit to the view
         self.addChild(player)
     }
-    
-//    override func update(_ currentTime: TimeInterval) {
-//        // Called before each frame is rendered
-//    }
 }

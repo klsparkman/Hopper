@@ -91,33 +91,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(player)
     }
     
-<<<<<<< HEAD
-    func spawnGreenCar() {
-=======
-    
 
-    func animateGreenCarL() {
->>>>>>> d8952089c9b69d16b7d1450d15a73bb2046d73bb
+    func spawnGreenCar() {
         greenCar.size = greenCarSize
         greenCar.position = CGPoint(x: -50, y: 100)
         self.addChild(greenCar)
     }
-    
-<<<<<<< HEAD
+
     func spawnPickupTruck1() {
-=======
-//    func animateDumpTruck() {
-//        dumpTruck.size = dumpTruckSize
-//        self.addChild(dumpTruck)
-//        
-//        UIView.animate(withDuration: 1.5, delay: 0, options: [.repeat, .curveEaseInOut], animations: {
-//            self.dumpTruckConstraint.constant -= self.view?.bounds.width ?? 500
-//            self.view?.layoutIfNeeded()
-//        }, completion: nil)
-//    }
-    
-    func animatePickupTruck1() {
->>>>>>> d8952089c9b69d16b7d1450d15a73bb2046d73bb
         pickupTruck1.size = pickupTruck1Size
         pickupTruck1.position = CGPoint(x: -50, y: 200)
         self.addChild(pickupTruck1)
@@ -134,9 +115,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         schoolBus.position = CGPoint(x: -50, y: 400)
         self.addChild(schoolBus)
     }
-    
-<<<<<<< HEAD
-=======
+
     // Mark: - Animations
 //    func animateGreenCarL() {
 //        greenCar.size = greenCarSize
@@ -160,6 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //        }, completion: nil)
     //    }
     
+
 //    func animatePickupTruck1() {
 //        pickupTruck1.size = pickupTruck1Size
 //        self.addChild(pickupTruck1)
@@ -189,5 +169,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //            self.view?.layoutIfNeeded()
 //        }, completion: nil)
 //    }
->>>>>>> 6f76cac239c4941b24d63cbdfc98b363aeca262d
 }

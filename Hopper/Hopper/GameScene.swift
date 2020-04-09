@@ -24,7 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerSize = CGSize(width: 50, height: 50)
     
     // vehicles
-    //    var dumpTruck = SKSpriteNode(imageNamed: "dumpTruck.L")
+    var dumpTruck = SKSpriteNode(imageNamed: "dumpTruck.L")
     var greenCar = SKSpriteNode(imageNamed: "greenCarL")
     var pickupTruck1 = SKSpriteNode(imageNamed: "pickupTruck.1.R")
     
@@ -34,7 +34,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var schoolBus = SKSpriteNode(imageNamed: "schoolBus.R")
     
     // vehicle Sizes
-    //    var dumpTruckSize = CGSize(width: 50, height: 50)
+    var dumpTruckSize = CGSize(width: 50, height: 50)
     var greenCarSize = CGSize(width: 50, height: 50)
     var pickupTruck1Size = CGSize(width: 50, height: 50)
     
@@ -47,14 +47,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         // loads rabbit with its starting conditions
         spawnPlayer()
+        
+        //loads vehicles
         spawnRedCar()
         spawnGreenCar()
         spawnSchoolBus()
         spawnPickupTruck1()
+        spawnDumpTruck()
         
         // loads and animates vehicles
         //animateGreenCarL()
-        //        animateDumpTruck()
+        //animateDumpTruck()
         //animatePickupTruck1()
         //animateRedCar()
         //animateSchoolBus()
@@ -75,10 +78,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.run(moveByAction)
         } else {
             let moveByAction = SKAction.moveBy(x: 0, y: -50, duration: 0.3)
-            
             // executes the movement action
             player.run(moveByAction)
         }
+        
     }
     
     // Mark: - Adding nodes
@@ -94,26 +97,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func spawnGreenCar() {
         greenCar.size = greenCarSize
-        greenCar.position = CGPoint(x: -50, y: 100)
+        greenCar.position = CGPoint(x: self.frame.maxX + 50, y: self.frame.minY + 100)
         self.addChild(greenCar)
+        let carMoveByAction = SKAction.moveBy(x: -500, y: 0, duration: 2)
+        greenCar.run(carMoveByAction)
     }
 
     func spawnPickupTruck1() {
         pickupTruck1.size = pickupTruck1Size
-        pickupTruck1.position = CGPoint(x: -50, y: 200)
+        pickupTruck1.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 200)
         self.addChild(pickupTruck1)
+        let carMoveByAction = SKAction.moveBy(x: 500, y: 0, duration: 3)
+        pickupTruck1.run(carMoveByAction)
     }
     
     func spawnRedCar() {
         redCar.size = redCarSize
-        redCar.position = CGPoint(x: -50, y: 300)
+        redCar.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 300)
         self.addChild(redCar)
+        let carMoveByAction = SKAction.moveBy(x: 500, y: 0, duration: 2.5)
+        redCar.run(carMoveByAction)
     }
     
     func spawnSchoolBus() {
         schoolBus.size = schoolBusSize
-        schoolBus.position = CGPoint(x: -50, y: 400)
+        schoolBus.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 400)
         self.addChild(schoolBus)
+        let carMoveByAction = SKAction.moveBy(x: 500, y: 0, duration: 2)
+        schoolBus.run(carMoveByAction)
+    }
+    
+    func spawnDumpTruck() {
+        dumpTruck.size = dumpTruckSize
+        dumpTruck.position = CGPoint(x: self.frame.maxX + 50, y: self.frame.minY + 500)
+        self.addChild(dumpTruck)
+        let carMoveByAction = SKAction.moveBy(x: -500, y: 0, duration: 1)
+        dumpTruck.run(carMoveByAction)
     }
 
     // Mark: - Animations

@@ -17,6 +17,7 @@ class GameViewController: UIViewController {
         let scene = GameScene(size: view.frame.size)
         let skView = view as! SKView
         skView.presentScene(scene)
+        scene.backgroundColor = .white
     }
     
     override var prefersStatusBarHidden: Bool {

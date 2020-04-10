@@ -2,7 +2,7 @@ import SpriteKit
 import GameplayKit
 import UIKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene {
     
     //MARK: - Properties
     var label = SKLabelNode(text: "Hop to it!")
@@ -43,19 +43,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     @objc func tap(recognizer: UIGestureRecognizer) {
-        // gets the exact point on the screen where the user tapped
-        let viewLocation = recognizer.location(in: view)
-        let sceneLocation = convertPoint(fromView: viewLocation)
-        
-        // defines which direction to move, how far, and how quickly
-        if player.position.y < sceneLocation.y {
+        // defines how far and how quickly to hop
             let moveByAction = SKAction.moveBy(x: 0, y: 50, duration: 0.3)
             player.run(moveByAction)
-        } else {
-            let moveByAction = SKAction.moveBy(x: 0, y: -50, duration: 0.3)
-            // executes the movement action
-            player.run(moveByAction)
-        }
     }
     
     // Mark: - Adding nodes
@@ -173,6 +163,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if self.player.intersects(self.carrot) {
             label.text = "You did it, you winner, you!"
+            player.position = CGPoint(x: self.frame.midX, y: self.frame.minY + 50)
         }
     }
 }

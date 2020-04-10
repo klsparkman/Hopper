@@ -1,29 +1,26 @@
 import SpriteKit
 import GameplayKit
+import UIKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //MARK: - Properties
+    var label = SKLabelNode(text: "Hop to it!")
+    var carrot = SKSpriteNode(imageNamed: "carrot")
     var player = SKSpriteNode(imageNamed: "Abunny.5")
-    var playerSize = CGSize(width: 50, height: 50)
     
     // vehicles
     var dumpTruck = SKSpriteNode(imageNamed: "dumpTruck.L")
     var greenCar = SKSpriteNode(imageNamed: "greenCarL")
     var pickupTruck1 = SKSpriteNode(imageNamed: "pickupTruck.1.R")
-    
-    // TODO: - Where is pickupTruck2 on the storyboard?
-    //var pickupTruck2 = SKSpriteNode(imageNamed: "pickupTruck.2.R")
     var redCar = SKSpriteNode(imageNamed: "redCar.R")
     var schoolBus = SKSpriteNode(imageNamed: "schoolBus.R")
     
-    // vehicle Sizes
+    // Sizes
+    var playerSize = CGSize(width: 40, height: 40)
     var dumpTruckSize = CGSize(width: 50, height: 50)
     var greenCarSize = CGSize(width: 50, height: 50)
     var pickupTruck1Size = CGSize(width: 50, height: 50)
-    
-    // TODO: - Where is pickupTruck2 on the storyboard?
-    var pickupTruck2Size = CGSize(width: 50, height: 50)
     var redCarSize = CGSize(width: 50, height: 50)
     var schoolBusSize = CGSize(width: 50, height: 50)
     
@@ -37,7 +34,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spawnSchoolBus()
         spawnPickupTruck1()
         spawnDumpTruck()
-
+        spawnCarrot()
+        spawnLabel()
+        
         // sets up tap recognizer to listen for the tap function
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         view.addGestureRecognizer(recognizer)
@@ -57,7 +56,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // executes the movement action
             player.run(moveByAction)
         }
-        
     }
     
     // Mark: - Adding nodes
@@ -68,6 +66,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.position = CGPoint(x: self.frame.midX, y: self.frame.minY + 50)
         // add rabbit to the view
         self.addChild(player)
+    }
+    
+    func spawnCarrot() {
+        carrot.size = CGSize(width: 60, height: 60)
+        carrot.position = CGPoint(x: self.frame.midX, y: 750)
+        self.addChild(carrot)
+    }
+    
+    func spawnLabel() {
+        label.position = CGPoint(x: self.frame.midX, y: 800)
+        label.fontColor = UIColor.black
+        self.addChild(label)
     }
     
     // greenCar stuff
@@ -84,7 +94,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let carMoveByAction = SKAction.moveBy(x: -500, y: 0, duration: 2)
         greenCar.run(carMoveByAction)
     }
-        
+    
     // pickupTruck1 stuff
     func spawnPickupTruck1() {
         pickupTruck1.size = pickupTruck1Size
@@ -92,8 +102,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(pickupTruck1)
         
         pickupTruck1.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(pickupTruck1EndlessAnimation), SKAction.wait(forDuration: 2.5)])))
-        }
-        
+    }
+    
     func pickupTruck1EndlessAnimation() {
         pickupTruck1.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 600)
         let carMoveByAction = SKAction.moveBy(x: 500, y: 0, duration: 3)
@@ -110,7 +120,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func redCarEndlessAnimation() {
-        redCar.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 300)
+        redCar.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 250)
         let carMoveByAction = SKAction.moveBy(x: 500, y: 0, duration: 2.5)
         redCar.run(carMoveByAction)
     }
@@ -126,7 +136,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func schoolBusEndlessAnimation() {
         schoolBus.position = CGPoint(x: self.frame.minX - 50, y: self.frame.minY + 400)
-        let carMoveByAction = SKAction.moveBy(x: 500, y: 0, duration: 2)
+        let carMoveByAction = SKAction.moveBy(x: 500, y: 0, duration: 3)
         schoolBus.run(carMoveByAction)
     }
     
@@ -136,12 +146,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dumpTruck.position = CGPoint(x: self.frame.maxX + 50, y: 500)
         self.addChild(dumpTruck)
         
-        dumpTruck.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(dumpTruckEndlessAnimation), SKAction.wait(forDuration: 0.5)])))
+        dumpTruck.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(dumpTruckEndlessAnimation), SKAction.wait(forDuration: 0.9)])))
     }
     
     func dumpTruckEndlessAnimation() {
         dumpTruck.position = CGPoint(x: self.frame.maxX + 50, y: 500)
         let carMoveByAction = SKAction.moveBy(x: -500, y: 0, duration: 4)
         dumpTruck.run(carMoveByAction)
+    }
+    
+    override func update(_ currentTime: CFTimeInterval) {
+        if self.player.intersects(self.greenCar) {
+            player.position = CGPoint(x: self.frame.midX, y: self.frame.minY + 50)
+        }
+        if self.player.intersects(self.dumpTruck) {
+            player.position = CGPoint(x: self.frame.midX, y: self.frame.minY + 50)
+        }
+        if self.player.intersects(self.pickupTruck1) {
+            player.position = CGPoint(x: self.frame.midX, y: self.frame.minY + 50)
+        }
+        if self.player.intersects(self.redCar) {
+            player.position = CGPoint(x: self.frame.midX, y: self.frame.minY + 50)
+        }
+        if self.player.intersects(self.schoolBus) {
+            player.position = CGPoint(x: self.frame.midX, y: self.frame.minY + 50)
+        }
+        if self.player.intersects(self.carrot) {
+            label.text = "You did it, you winner, you!"
+        }
     }
 }
